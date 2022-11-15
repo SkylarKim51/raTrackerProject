@@ -3,6 +3,7 @@ var http = require('http');
 var fs = require('fs');
 var url = require('url');
 
+
 //createServer obv creates a server object
 http.createServer(function (req, res){
     var q = url.parse(req.url, true);
