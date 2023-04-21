@@ -1,5 +1,27 @@
 {
   "dependencies": {
-    "mongodb": "^4.11.0"
-  }
+    "mongodb": "^4.11.0",
+    "npx": "^10.2.2"
+  },
+  "name": "userevents",
+  "version": "1.0.0",
+  "description": "functions to call upon user actions",
+  "main": "usermodule.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SkylarKim51/raTrackerProject.git"
+  },
+  "keywords": [
+    "user",
+    "events"
+  ],
+  "author": "skylar kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SkylarKim51/raTrackerProject/issues"
+  },
+  "homepage": "https://github.com/SkylarKim51/raTrackerProject#readme"
 }
