@@ -13,8 +13,14 @@
   }
 } */
 
+.App-name {
+  font-size: xx-large;
+  font-weight: 900;
+  color: blue;
+}
+
 .App-header {
-  background-color: #282c34;
+  background-color: #6e7176;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -18,11 +18,11 @@ code {
 }
 
 .nav-area {
-  background-color: #282c34;
+  background-color: #6e7176;
 }
 
 a {
-  color: green
+  color: rgb(13, 19, 189)
 }
 
 a:hover{
@@ -30,12 +30,16 @@ a:hover{
 }
 
 .Contact-Section{
-  background-color: #282c34;
+  background-color: #6e7176;
   height: 100%;
   display: flex;
 }
 
+.About-Section{
+  background-color: #6e7176;
+}
+
 .userEntry{
-  background-color: #282c34;
+  background-color: #6e7176;
   height: 100%;
 }
