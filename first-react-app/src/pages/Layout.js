@@ -19,6 +19,8 @@ const Layout = () => {
                 </ul> */}
                 <a href="/"> Home </a> |
                 <a href="/MakeEntry"> Make An Entry  </a> |
+                <a href="/MyEntries"> My Entries  </a> |
+                <a href="/About"> About </a> |
                 <a href="/Contact"> Contact </a>
             </nav>
         </div>

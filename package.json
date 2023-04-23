@@ -1,14 +1,16 @@
 {
-  "dependencies": {
-    "mongodb": "^4.11.0",
-    "npx": "^10.2.2"
-  },
-  "name": "userevents",
+  "name": "userevents", 
   "version": "1.0.0",
   "description": "functions to call upon user actions",
-  "main": "usermodule.js",
+  "main": "connection.js",
+  "dependencies": {
+    "mongodb": "^4.11.0",
+    "npx": "^10.2.2",
+    "express": "^4.17.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon connection.js"
   },
   "repository": {
     "type": "git",

@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import MakeEntry from "./pages/UserEntry";
 import Contact from "./pages/Contact";
 import SignUp from './pages/SignUp';
+import About from './pages/About';
+import MyEntries from './pages/MyEntries';
 import NoPage from "./pages/NoPage";
 
 export default function App() {
@@ -17,7 +19,9 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="MakeEntry" element={<MakeEntry />} />
+          <Route path="MyEntries" element={<MyEntries />} />
           <Route path="Contact" element={<Contact />} />
+          <Route path="About" element={<About />} />
           <Route path="SignUp" element={<SignUp/>} />
           <Route path="*" element={<Home />} />
         </Route>
