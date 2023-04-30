@@ -22,7 +22,7 @@ function createUser(){
     MongoClient.connect(url, function(err, db){
         if(err) throw err;
         var dbo = db.db(dbName);
-        var userOne = {name: "Skylar Kim", medications: "Rinvoq", stressLevel: "6", exercise: "Legs", food: "red meat, white rice", painLevel: "0", painLocations: "N/A", sleep: "10", date: "4/23/2023"};
+        var userOne = {name: "Skylar Kim", medications: "Rinvoq", stressLevel: "6", exercise: "Legs", food: "red meat, white rice", painLevel: "0", painLocations: "N/A", sleep: "10", date: "4/24/2023"};
         dbo.collection("raTrackerUsers").insertOne(userOne, function(err, res){
             if(err) throw err;
             console.log("1 new user added");
@@ -43,6 +43,16 @@ function userEntry(object){
         })
     });
 }
+
+// MongoClient.connect(url, function(err, db) {
+//     if (err) throw err;
+//     var dbo = db.db("mydb");
+//     dbo.collection("customers").drop(function(err, delOK) {
+//       if (err) throw err;
+//       if(delOK) console.log("Collection deleted");
+//       db.close();
+//     });
+//   });
 
 module.exports.createFirstCollection = createFirstCollection;
 module.exports.createUser = createUser;
