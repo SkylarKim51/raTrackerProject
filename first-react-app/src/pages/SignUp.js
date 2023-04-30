@@ -3,6 +3,7 @@ import '.././App.css';
 import { useState } from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+//var dbAccess = require('../../../usermodule');
 
 const SignUp = () => {
     const [UserName, SetName] = useState("");
@@ -25,10 +26,37 @@ const SignUp = () => {
     const HandlePasswordChange = (event) =>  {
       SetPassword(event.target.value);
     }
+
+    const confirmSignUp = () => {
+      if (UserName && UserDOB && UserEmail && UserPassword){
+        var dobPattern = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/
+        if(!dobPattern.test(UserDOB)){
+          alert("Please enter correct format for date of birth MM/DD/YYYY")
+        }
+        else{
+          //send to mongo
+        }
+      }
+      else{
+        alert("Please fill out all fields")
+      }
+    }
   
     const SignUpSubmit  = (event) => {
         //send UserEmail to Mongo and make sure account doesnt exist
         event.preventDefault();
+
+        const userInfo = {UserName, UserDOB, UserEmail, UserPassword};
+
+        confirmSignUp();
+
+        // fetch("http://localhost:8080/SignUp", {
+        //   method: 'POST',
+        //   mode: 'cors',
+        //   body: JSON.stringify(userInfo)
+        // }).then(()=>{
+        //   window.alert("signup submit post req")
+        // })
     }
     return(
         <div className="App">
@@ -45,12 +73,12 @@ const SignUp = () => {
             <Form>
               <Form.Group className="mb-3" controlId="formBasic" value = {UserName} onChange = {HandleNameChange}>
                 <Form.Label>Name: </Form.Label>
-                <Form.Control type="name" placeholder="Name" />
+                <Form.Control type="name" placeholder="Smitty WerbenJagerManJensen" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasic" value = {UserDOB} onChange = {HandleDOBChange}>
                 <Form.Label>Date of Birth: </Form.Label>
-                <Form.Control type="dob" placeholder="Date of Birth" />
+                <Form.Control type="dob" placeholder="MM/DD/YYYY" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicEmail" value = {UserEmail} onChange = {HandleEmailChange}>

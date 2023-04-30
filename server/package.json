@@ -1,4 +1,8 @@
 {
+  "dependencies": {
+    "mongodb": "^4.11.0",
+    "npx": "^10.2.2"
+  },
   "name": "userevents",
   "version": "1.0.0",
   "description": "functions to call upon user actions",

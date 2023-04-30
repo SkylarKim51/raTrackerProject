@@ -68,8 +68,9 @@ const Home = () => {
               </Button>
 
               <Button variant="secondary" type="button" onClick={NavigateSignUp}>
-                Sign Up
+                <form action="../../../post" method="post">Sign Up</form>
               </Button>
+              
             </Form>
             <form action="../../../post" method="post" 
                 className="form">
