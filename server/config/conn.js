@@ -29,4 +29,44 @@ module.exports = {
             return
         });
     },
+
+    showAllUsers: function (){
+        MongoClient.connect(Db, function(err, db){
+            if(err) throw err;
+            var dbo = db.db("RATRACKERPROJECT");
+            dbo.collection("raTrackerUsers").find({}).toArray(function (err, result) {
+                if (err) throw err;
+                console.log(result);
+              });
+
+        })
+    },
+
+    //need to fill in correct functionality
+    userSignIn: function (){
+        MongoClient.connect(Db, function(err, db){
+            if(err) throw err;
+            var dbo = db.db("RATRACKERPROJECT");
+            dbo.collection("raTrackerUsers").find({}).toArray(function (err, result) {
+                if (err) throw err;
+                console.log(result);
+              });
+
+        })
+    },
+
+    //need to fill in correct functionality
+    userSignUp: function (){
+        MongoClient.connect(Db, function(err, db){
+            if(err) throw err;
+            var dbo = db.db("RATRACKERPROJECT");
+            dbo.collection("raTrackerUsers").find({}).toArray(function (err, result) {
+                if (err) throw err;
+                console.log(result);
+              });
+
+        })
+    }
+
+
 };

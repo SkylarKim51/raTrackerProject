@@ -8,9 +8,9 @@ app.use(express.json());
 app.use(require("./routes/record"));
 const dbo = require("./config/conn");
 
-app.get("/", (req, res) => {
-    res.json({message: "Welcome to my attempt to learn some shit"});
-});
+// app.get("/", (req, res) => {
+//     res.json({message: "Welcome to my attempt to learn some shit"});
+// });
    
 app.listen(port, () => {
     //perform a database connection when server starts

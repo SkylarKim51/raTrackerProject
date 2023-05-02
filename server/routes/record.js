@@ -3,6 +3,8 @@ const express = require("express");
 const recordRoutes = express.Router();
 
 const dbo = require("../config/conn");
+
+const User = require('../models/user');
 //const dbo = require("../usermodule");
 const ObjectId = require("mongodb").ObjectId;
 
@@ -17,6 +19,18 @@ recordRoutes.route("/record").get(function (req, res){
 
 recordRoutes.route("/userEntry").get(function (req, res){
     dbo.createUser();
+});
+
+recordRoutes.route("/showUsers").get(function(req, res){
+    dbo.showAllUsers();
+});
+
+recordRoutes.route("/signIn").get(function(req, res){
+    dbo.userSignIn();
+});
+
+recordRoutes.route("/signUp").get(function(req, res){
+    dbo.userSignUp();
 });
 
 
