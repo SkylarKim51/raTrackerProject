@@ -20,7 +20,7 @@ const SignUp = new mongoose.Schema({
         type: String,
         required: true
     },
-})
+});
 
 const SignIn = new mongoose.Schema({
     email: {
@@ -34,8 +34,9 @@ const SignIn = new mongoose.Schema({
     }
 })
 
-module.exports = signup = mongoose.model('signUp', SignUp);
-module.exports = signin = mongoose.model('signIn'. SignIn);
+//module.exports = user = mongoose.model('signIn'. SignIn);
+module.exports = user = mongoose.model('signUp', SignUp);
+
 
 // const dbConfig = require("../config/db.config");
 

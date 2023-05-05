@@ -2,60 +2,94 @@ import '.././App.css';
 import { useState } from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const SignUp = () => {
-    const [UserName, SetName] = useState("");
-    const [UserDOB, SetDOB] = useState("");
-    const [UserEmail, SetEmail] = useState("");
-    const [UserPassword, SetPassword] = useState("");
+    // const [UserName, SetName] = useState("");
+    // const [UserDOB, SetDOB] = useState("");
+    // const [UserEmail, SetEmail] = useState("");
+    // const [UserPassword, SetPassword] = useState("");
+    const navigate = useNavigate()
+    const [newUser, setUser] = useState({
+      name: '',
+      email: '',
+      dob: Date,
+      password: '',
+    });
 
-    const HandleNameChange = (event) =>  {
-        SetName(event.target.value);
+    function updateForm(value) {
+      return setUser((prev) => {
+        return { ...prev, ...value };
+      });
     }
 
-    const HandleDOBChange = (event) =>  {
-       SetDOB(event.target.value);
-    }
-  
-    const HandleEmailChange = (event) => {
-      SetEmail(event.target.value);
+   async function onSubmit() {
+      const newPerson = {...newUser};
+      await fetch('http://localhost:5000/signUp', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPerson),
+      })
+      .catch(error => {
+        window.alert(error);
+        return;
+      });
+      setUser({ name: "", email: "", dob: "", password: ""});
+      navigate("/MyEntries");
+      // axios
+      //   .post('http://localhost:5000/signUp', newUser)
+      //   .then((res) =>{
+      //     setUser({
+      //       name: '',
+      //       email: '',
+      //       dob: '',
+      //       password: ''
+      //     });
+
+      //     navigate('/MyEntries');
+      //   })
+      //   .catch((err) => {
+      //     console.log("Sign In Error, please try again");
+      //   });
     }
 
-    const HandlePasswordChange = (event) =>  {
-      SetPassword(event.target.value);
-    }
+    // const HandleNameChange = (event) =>  {
+    //     SetName(event.target.value);
+    // }
+    // const HandleDOBChange = (event) =>  {
+    //    SetDOB(event.target.value);
+    // }
+    // const HandleEmailChange = (event) => {
+    //   SetEmail(event.target.value);
+    // }
+    // const HandlePasswordChange = (event) =>  {
+    //   SetPassword(event.target.value);
+    // }
 
     const confirmSignUp = () => {
-      if (UserName && UserDOB && UserEmail && UserPassword){
+      if (newUser.name && newUser.dob && newUser.email && newUser.password){
         var dobPattern = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/
-        if(!dobPattern.test(UserDOB)){
+        if(!dobPattern.test(newUser.dob)){
           alert("Please enter correct format for date of birth MM/DD/YYYY")
-        }
-        else{
-          //send to mongo
         }
       }
       else{
         alert("Please fill out all fields")
       }
+      return
     }
   
     const SignUpSubmit  = (event) => {
         //send UserEmail to Mongo and make sure account doesnt exist
         event.preventDefault();
-
-        //const userInfo = {UserName, UserDOB, UserEmail, UserPassword};
-
         confirmSignUp();
-
-        // fetch("http://localhost:8080/SignUp", {
-        //   method: 'POST',
-        //   mode: 'cors',
-        //   body: JSON.stringify(userInfo)
-        // }).then(()=>{
-        //   window.alert("signup submit post req")
-        // })
+        onSubmit();
     }
+
     return(
         <div className="App">
 
@@ -65,26 +99,26 @@ const SignUp = () => {
         </header>
           <img src="MyDog.png" alt="sick azz pup"></img>
           <p>
-            Welcome to cleverName, please register to begin using
+            Welcome to CleverName, please register to begin using
           </p>
           <p>
             <Form>
-              <Form.Group className="mb-3" controlId="formBasic" value = {UserName} onChange = {HandleNameChange}>
+              <Form.Group className="mb-3" controlId="formBasic" value = {newUser.name} onChange = {(e) => updateForm({name: e.target.value})}>
                 <Form.Label>Name: </Form.Label>
                 <Form.Control type="name" placeholder="Smitty WerbenJagerManJensen" />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasic" value = {UserDOB} onChange = {HandleDOBChange}>
+              <Form.Group className="mb-3" controlId="formBasic" value = {newUser.dob} onChange = {(e) => updateForm({dob: e.target.value})}>
                 <Form.Label>Date of Birth: </Form.Label>
                 <Form.Control type="dob" placeholder="MM/DD/YYYY" />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicEmail" value = {UserEmail} onChange = {HandleEmailChange}>
+              <Form.Group className="mb-3" controlId="formBasicEmail" value = {newUser.email} onChange = {(e) => updateForm({email: e.target.value})}>
                 <Form.Label>Email Address: </Form.Label>
                 <Form.Control type="email" placeholder="Email" />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword" value={UserPassword} onChange={HandlePasswordChange}>
+              <Form.Group className="mb-3" controlId="formBasicPassword" value={newUser.password} onChange= {(e) => updateForm({password: e.target.value})}>
                 <Form.Label>Password: </Form.Label>
                 <Form.Control type="password" placeholder="Password" />
               </Form.Group>
