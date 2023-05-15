@@ -16,11 +16,11 @@ module.exports = {
         return _db;
     },
 
-    createUser: function (){
+    createUser: function (userOne){
         MongoClient.connect(Db, function(err, db){
             if(err) throw err;
             var dbo = db.db("RATRACKERPROJECT");
-            var userOne = {name: "Skylar Kim", medications: "Rinvoq", stressLevel: "6", exercise: "Legs", food: "red meat, white rice", painLevel: "0", painLocations: "N/A", sleep: "10", date: "4/30/2023"};
+            //var userOne = {name: "Skylar Kim", medications: "Rinvoq", stressLevel: "6", exercise: "Legs", food: "red meat, white rice", painLevel: "0", painLocations: "N/A", sleep: "10", date: "4/30/2023"};
             dbo.collection("raTrackerUsers").insertOne(userOne, function(err, res){
                 if(err) throw err;
                 console.log("1 new user added");
@@ -29,4 +29,42 @@ module.exports = {
             return
         });
     },
+
+    showAllUsers: function (){
+        MongoClient.connect(Db, function(err, db){
+            if(err) throw err;
+            var dbo = db.db("RATRACKERPROJECT");
+            dbo.collection("raTrackerUsers").find({}).toArray(function (err, result) {
+                if (err) throw err;
+                console.log(result);
+              });
+
+        })
+    },
+
+    //need to fill in correct functionality
+    userSignIn: function (){
+        MongoClient.connect(Db, function(err, db){
+            if(err) throw err;
+            var dbo = db.db("RATRACKERPROJECT");
+            dbo.collection("raTrackerUsers").find({}).toArray(function (err, result) {
+                if (err) throw err;
+                console.log(result);
+              });
+
+        })
+    },
+
+    //need to fill in correct functionality
+    // userSignUp: function (newUser){
+    //     MongoClient.connect(Db, function(err, db){
+    //         if(err) throw err;
+    //         var dbo = db.db("RATRACKERPROJECT");
+    //         dbo.collection("raTrackerUsers").find({}).toArray(function (err, result) {
+    //             if (err) throw err;
+    //             console.log(result);
+    //           });
+
+    //     })
+    // }
 };
