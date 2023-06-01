@@ -35,8 +35,20 @@ recordRoutes.route("/showUsers").get(function(req, res){
     dbo.showAllUsers();
 });
 
-recordRoutes.route("/signIn").get(function(req, res){
-    dbo.userSignIn();
+recordRoutes.post("/signIn", function(req, res) {
+    let userObj = {
+        email: req.body.email,
+        password: req.body.password,
+    }
+    var userResult = dbo.userSignIn(userObj, function(result){
+        if(result != null){
+            res.send(result);
+        }
+        else{
+            res.send("user not found");
+        }
+    });
+    return;
 });
 
 recordRoutes.post("/signUp", function (req, res) {

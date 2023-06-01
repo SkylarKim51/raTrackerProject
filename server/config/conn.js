@@ -36,4 +36,48 @@ module.exports = {
             return;
         });
     },
+    
+    //need to fill in correct functionality
+    userSignIn: function (userSignIn, callBack){
+        var userObj = null;
+        MongoClient.connect(Db, function(err, db){
+            if(err) throw err;
+            var dbo = db.db("RATRACKERPROJECT");
+            //dbo.collection("raTrackerUsers").findOne({email: userSignIn.email, password: userSignIn.password}, {_id: 1, email:0, name:0, password:0, dob:0});
+            dbo.collection("raTrackerUsers").findOne({email: userSignIn.email, password: userSignIn.password}, function(error, res){
+                if(error) throw error;
+                if(res != null){
+                    return callBack(res.name);
+                }
+                else{
+                    return callBack(null);
+                }
+            });
+        })
+    },
+
+    showAllUsers: function (){
+        MongoClient.connect(Db, function(err, db){
+            if(err) throw err;
+            var dbo = db.db("RATRACKERPROJECT");
+            dbo.collection("raTrackerUsers").find({}).toArray(function (err, result) {
+                if (err) throw err;
+                console.log(result);
+              });
+        })
+    },
+
+
+    //need to fill in correct functionality
+    // userSignUp: function (newUser){
+    //     MongoClient.connect(Db, function(err, db){
+    //         if(err) throw err;
+    //         var dbo = db.db("RATRACKERPROJECT");
+    //         dbo.collection("raTrackerUsers").find({}).toArray(function (err, result) {
+    //             if (err) throw err;
+    //             console.log(result);
+    //           });
+
+    //     })
+    // }
 };

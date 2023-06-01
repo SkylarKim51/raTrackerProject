@@ -15,32 +15,38 @@ const Home = () => {
       password: '',
     });
 
-    const onChange = (e) => {
-      setSignIn({[e.email]: e.email.value, [e.password]: e.password.value})
+    function updateForm(value) {
+      return setSignIn((prev) => {
+        return { ...prev, ...value };
+      });
     }
 
-    const onSubmit = (e) => {
-      e.preventDefault();
+    // const onChange = (e) => {
+    //   setSignIn({[e.email]: e.email.value, [e.password]: e.password.value})
+    // }
 
-      axios
-        .post('http://localhost:5000/signIn', signIn)
-        .then((res) =>{
-          setSignIn({
-            email: '',
-            password: '',
-          });
+    // const onSubmit = (e) => {
+    //   e.preventDefault();
 
-          navigate('/MyEntries');
-        })
-        .catch((err) => {
-          console.log("Sign In Error, please try again");
-        });
-    }
+    //   axios
+    //     .post('http://localhost:5000/signIn', signIn)
+    //     .then((res) =>{
+    //       setSignIn({
+    //         email: '',
+    //         password: '',
+    //       });
+
+    //       navigate('/MyEntries');
+    //     })
+    //     .catch((err) => {
+    //       console.log("Sign In Error, please try again");
+    //     });
+    // }
 
 
-    const HandleEmailChange = (event) => {
-      SetEmail(event.target.value);
-    }
+    // const HandleEmailChange = (event) => {
+    //   SetEmail(event.target.value);
+    // }
 
     async function onSubmit() {
       const userSign = {...signIn};
@@ -58,7 +64,7 @@ const Home = () => {
 
       const onSubUser = await response.text()
 
-      //window.alert(onSubUser)
+      window.alert(onSubUser)
 
       setSignIn({ email: "", password: ""});
       if(onSubUser == "user not found"){
@@ -68,6 +74,7 @@ const Home = () => {
         navigate("MyEntries")
       }
     }
+
   
     const SignInSubmit  = (event) => {
         ConfirmUserID();
