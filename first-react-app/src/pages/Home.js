@@ -8,8 +8,6 @@ import Button from "react-bootstrap/Button";
 //import user from '../../../server/models/user';
 
 const Home = () => {
-    const [UserEmail, SetEmail] = useState("");
-    const [UserPassword, SetPassword] = useState("");
     const navigate = useNavigate();
   
     const [signIn, setSignIn] = useState({
@@ -44,8 +42,31 @@ const Home = () => {
       SetEmail(event.target.value);
     }
 
-    const HandlePasswordChange = (event) =>  {
-      SetPassword(event.target.value);
+    async function onSubmit() {
+      const userSign = {...signIn};
+      const response = await fetch('http://localhost:5000/signIn', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userSign),
+      })
+      .catch(error => {
+        window.alert(error);
+        return;
+      })
+
+      const onSubUser = await response.text()
+
+      //window.alert(onSubUser)
+
+      setSignIn({ email: "", password: ""});
+      if(onSubUser == "user not found"){
+        navigate("Home")
+      }
+      else{
+        navigate("MyEntries")
+      }
     }
   
     const SignInSubmit  = (event) => {
@@ -60,7 +81,7 @@ const Home = () => {
 
     const ConfirmUserID = () => {
       //
-      if (UserEmail && UserPassword){
+      if (signIn.email && signIn.password){
         //send UserEmail and UserPassword to MongoDB and check
         //navigate('MakeEntry');
         return;
@@ -83,12 +104,12 @@ const Home = () => {
 
           <p>
             <Form>
-              <Form.Group className="mb-3" controlId="formBasicEmail" value = {UserEmail} onChange = {HandleEmailChange}>
+              <Form.Group className="mb-3" controlId="formBasicEmail" value = {signIn.email} onChange = {(e) => updateForm({email: e.target.value})}>
                 <Form.Label>Email Address: </Form.Label>
                 <Form.Control type="email" placeholder="Enter email" />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword" value={UserPassword} onChange={HandlePasswordChange}>
+              <Form.Group className="mb-3" controlId="formBasicPassword" value={signIn.password} onChange= {(e) => updateForm({password: e.target.value})}>
                 <Form.Label>Password: </Form.Label>
                 <Form.Control type="password" placeholder="Password" />
               </Form.Group>
@@ -102,10 +123,6 @@ const Home = () => {
               </Button>
               
             </Form>
-            <form action="../../../post" method="post" 
-                className="form">
-              <button type="submit">Connected?</button>
-            </form>
           </p> 
         </header>
       </div>
