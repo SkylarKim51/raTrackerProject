@@ -36,7 +36,7 @@ module.exports = {
             return;
         });
     },
-    
+
     //need to fill in correct functionality
     userSignIn: function (userSignIn, callBack){
         var userObj = null;
