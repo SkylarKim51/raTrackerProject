@@ -1,8 +1,8 @@
 import '.././App.css';
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import { Link } from 'react-router-dom';
+// import axios from 'axios';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 //import user from '../../../server/models/user';
@@ -67,7 +67,7 @@ const Home = () => {
       window.alert(onSubUser)
 
       setSignIn({ email: "", password: ""});
-      if(onSubUser == "user not found"){
+      if(onSubUser === "user not found"){
         navigate("Home")
       }
       else{
