@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+//import user from '../../../server/models/user';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -14,10 +15,31 @@ const Home = () => {
       password: '',
     });
 
-    function updateForm(value) {
-      return setSignIn((prev) => {
-        return { ...prev, ...value };
-      });
+    const onChange = (e) => {
+      setSignIn({[e.email]: e.email.value, [e.password]: e.password.value})
+    }
+
+    const onSubmit = (e) => {
+      e.preventDefault();
+
+      axios
+        .post('http://localhost:5000/signIn', signIn)
+        .then((res) =>{
+          setSignIn({
+            email: '',
+            password: '',
+          });
+
+          navigate('/MyEntries');
+        })
+        .catch((err) => {
+          console.log("Sign In Error, please try again");
+        });
+    }
+
+
+    const HandleEmailChange = (event) => {
+      SetEmail(event.target.value);
     }
 
     async function onSubmit() {

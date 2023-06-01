@@ -2,9 +2,15 @@ const express = require('express');
 const app = express()
 const recordRoutes = express.Router();
 const dbo = require("../config/conn");
+
+//const User = require('../models/user');
+
 var bodyParser = require('body-parser');
+
 var jsonParser = bodyParser.json();
+
 var urlencodedParser = bodyParser.urlencoded({extended: true});
+
 app.use(jsonParser);
 app.use(urlencodedParser)
 
@@ -29,20 +35,8 @@ recordRoutes.route("/showUsers").get(function(req, res){
     dbo.showAllUsers();
 });
 
-recordRoutes.post("/signIn", function(req, res) {
-    let userObj = {
-        email: req.body.email,
-        password: req.body.password,
-    }
-    var userResult = dbo.userSignIn(userObj, function(result){
-        if(result != null){
-            res.send(result);
-        }
-        else{
-            res.send("user not found");
-        }
-    });
-    return;
+recordRoutes.route("/signIn").get(function(req, res){
+    dbo.userSignIn();
 });
 
 recordRoutes.post("/signUp", function (req, res) {
@@ -52,9 +46,14 @@ recordRoutes.post("/signUp", function (req, res) {
         dob: req.body.dob,
         password: req.body.password,
     }
-    var resultID = dbo.createUser(myobj);
-    console.log(resultID)
-    return;
+    console.log(req.body)
+    // let db_connect = dbo.getDb("RATRACKERPROJECT");
+    // db_connect.collection("raTrackerUsers").insertOne(myobj, function(err, result){
+    //         console.log("record.js route");
+    //         if (err) throw err;
+    //         res.json(result);
+    //     });
+    dbo.createUser(myobj);
 });
 
 
