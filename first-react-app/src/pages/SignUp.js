@@ -39,7 +39,7 @@ const SignUp = () => {
         return;
       });
       setUser({ name: "", email: "", dob: "", password: ""});
-      navigate("/MyEntries");
+      navigate("/MakeEntry");
       // axios
       //   .post('http://localhost:5000/signUp', newUser)
       //   .then((res) =>{
