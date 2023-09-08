@@ -1,11 +1,9 @@
 import '.././App.css';
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-// import axios from 'axios';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-//import user from '../../../server/models/user';
+const User = require('../../../server/models/user');
 
 const Home = () => {
     const navigate = useNavigate();
@@ -64,7 +62,7 @@ const Home = () => {
 
       const onSubUser = await response.text()
 
-      window.alert(onSubUser)
+      //window.alert(onSubUser)
 
       setSignIn({ email: "", password: ""});
       if(onSubUser === "user not found"){
@@ -87,7 +85,6 @@ const Home = () => {
     }
 
     const ConfirmUserID = () => {
-      //
       if (signIn.email && signIn.password){
         //send UserEmail and UserPassword to MongoDB and check
         //navigate('MakeEntry');

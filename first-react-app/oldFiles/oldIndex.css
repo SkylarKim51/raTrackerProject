@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/*Not sure if this is supposed to be here, can move later*/
+.navigation-items{
+  display: inline;
+}
+
+.nav-area {
+  background-color: #6e7176;
+}
+
+a {
+  color: rgb(13, 19, 189)
+}
+
+a:hover{
+  color: blue
+}
+
+.Contact-Section{
+  background-color: #6e7176;
+  height: 100%;
+  display: flex;
+}
+
+.About-Section{
+  background-color: #6e7176;
+}
+
+.Entry-Section{
+  background-color: #6e7176
+}
+
+.userEntry{
+  background-color: #6e7176;
+  height: 100%;
+}
