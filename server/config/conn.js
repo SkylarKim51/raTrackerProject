@@ -68,16 +68,15 @@ module.exports = {
     },
 
 
-    //need to fill in correct functionality
-    // userSignUp: function (newUser){
-    //     MongoClient.connect(Db, function(err, db){
-    //         if(err) throw err;
-    //         var dbo = db.db("RATRACKERPROJECT");
-    //         dbo.collection("raTrackerUsers").find({}).toArray(function (err, result) {
-    //             if (err) throw err;
-    //             console.log(result);
-    //           });
+    // const mongoose = require('mongoose')
 
-    //     })
+    // const connectDB = async () => {
+    //     try {
+    //         await mongoose.connect(Db)
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
     // }
+    
+    // module.exports = connectDB
 };

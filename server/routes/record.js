@@ -1,18 +1,19 @@
 const express = require('express');
-const app = express()
 const recordRoutes = express.Router();
+const path = require('path')
+
+
+const app = express()
 const dbo = require("../config/conn");
-
-//const User = require('../models/user');
-
 var bodyParser = require('body-parser');
-
 var jsonParser = bodyParser.json();
-
 var urlencodedParser = bodyParser.urlencoded({extended: true});
-
 app.use(jsonParser);
 app.use(urlencodedParser)
+
+router.get('^/$|/index(.html)?', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'views', 'index.html'))
+})
 
 
 //possibly for getting any object or record by id
@@ -25,14 +26,6 @@ recordRoutes.route("/record", (req, res) => {
             if (err) throw err;
             res.json(result);
         });
-});
-
-// recordRoutes.route("/userEntry").get(function (req, res){
-//     dbo.createUser();
-// });
-
-recordRoutes.route("/showUsers").get(function(req, res){
-    dbo.showAllUsers();
 });
 
 recordRoutes.post("/signIn", function(req, res) {
@@ -59,21 +52,7 @@ recordRoutes.post("/signUp", function (req, res) {
         password: req.body.password,
     }
     console.log(req.body)
-    // let db_connect = dbo.getDb("RATRACKERPROJECT");
-    // db_connect.collection("raTrackerUsers").insertOne(myobj, function(err, result){
-    //         console.log("record.js route");
-    //         if (err) throw err;
-    //         res.json(result);
-    //     });
     dbo.createUser(myobj);
 });
-
-
-
-// recordRoutes.route("/record/:id").get
-
-// recordRoutes.route("/record/add").post
-
-// recordRoutes.route("/record/delete")
 
 module.exports = recordRoutes;
