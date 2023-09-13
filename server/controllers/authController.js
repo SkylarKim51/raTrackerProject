@@ -22,21 +22,23 @@ const login = asyncHandler(async (req, res) => {
     //call user function find one and pass in the email
     //this implies that user has a built in function called findOne
     //exec is a search function for regex
-    //seems that findOne is attatched to the mongoose schema User, Notes schema also has one
+    //seems that findOne is attached to the mongoose schema User, Notes schema also has one
+    
     const foundUser = await User.findOne({ email }).exec()
-
+    
     //did not find user or user is no longer active
     //findOne returns a user object which has attribute active?
-    if (!foundUser || !foundUser.active) {
+    if (!foundUser) {
         return res.status(401).json({ message: 'Unauthorized' })
     }
+
 
     //user found, now to use bcrypt to see if correct password was entered
     const match = await bcrypt.compare(password, foundUser.password)
 
-    //seems match is a bool
+    // //seems match is a bool
     if (!match) return res.status(401).json({ message: 'Unauthorized' })
-
+   
     //create the jwt token called accessToken
     //user schema has an attribute called roles, probbaly pertains to authorization
     //not sure what ACCESS_TOKEN_SECRET is 
@@ -44,7 +46,7 @@ const login = asyncHandler(async (req, res) => {
         {
             "UserInfo": {
                 "email": foundUser.email,
-                "roles": foundUser.roles
+                //"roles": foundUser.roles
             }
         },
         process.env.ACCESS_TOKEN_SECRET,
@@ -68,6 +70,7 @@ const login = asyncHandler(async (req, res) => {
     })
 
     // Send accessToken containing email and roles 
+
     res.json({ accessToken })
 })
 

@@ -29,6 +29,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
+            //navigate('/dash')
             const { accessToken } = await login({ email, password }).unwrap()
             dispatch(setCredentials({ accessToken }))
             setEmail('')
