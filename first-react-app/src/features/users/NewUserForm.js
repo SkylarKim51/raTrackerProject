@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react"
 import { useAddNewUserMutation } from "./usersApiSlice"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
+//import { useNavigate, Link } from 'react-router-dom'
 //import { ROLES } from "../../config/roles"
 
-const NAME_REGEX = /^[a-z ,.'-]+$/
+const NAME_REGEX = /^[A-z ,.'-]+$/
 const EMAIL_REGEX = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
-const DOB_REGEX = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/
-
+const DOB_REGEX = /^([0-9]{2})\/([0-9]{2}\/([0-9]{4}))$/
 
 const NewUserForm = () => {
-
     const [addNewUser, {
         isLoading,
         isSuccess,
@@ -34,7 +33,6 @@ const NewUserForm = () => {
     const [dob, setDob] = useState('')
     const [validDob, setValidDob] = useState(false)
 
-    
     //const [roles, setRoles] = useState(["Employee"])
 
     useEffect(() => {
@@ -60,7 +58,8 @@ const NewUserForm = () => {
             setName('')
             setDob('')
             //setRoles([])
-            //navigate('/dash/users')
+            navigate('/dash')
+            
         }
     }, [isSuccess, navigate])
 
@@ -124,7 +123,7 @@ const NewUserForm = () => {
                     </div>
                 </div>
                 <label className="form__label" htmlFor="email">
-                    Username: <span className="nowrap">[3-20 letters]</span></label>
+                    Email: <span className="nowrap">[3-20 letters]</span></label>
                 <input
                     className={`form__input ${validEmailClass}`}
                     id="email"
@@ -147,7 +146,7 @@ const NewUserForm = () => {
                 />
 
                 <label className="form__label" htmlFor="name">
-                    Password: <span className="nowrap">[3-20 letters]</span></label>
+                    Name: <span className="nowrap">[3-20 letters]</span></label>
                 <input
                     className={`form__input ${validNameClass}`}
                     id="name"
@@ -158,7 +157,7 @@ const NewUserForm = () => {
                 />
 
                 <label className="form__label" htmlFor="dob">
-                    Password: <span className="nowrap">[mm/dd/yyyy]</span></label>
+                    Date of Birth: <span className="nowrap">[MM/DD/YYY]</span></label>
                 <input
                     className={`form__input ${validDobClass}`}
                     id="dob"
@@ -167,6 +166,7 @@ const NewUserForm = () => {
                     value={dob}
                     onChange={onDobChanged}
                 />
+
 
                 {/* <label className="form__label" htmlFor="roles">
                     ASSIGNED ROLES:</label>
@@ -181,6 +181,9 @@ const NewUserForm = () => {
                 >
                     {options}
                 </select> */}
+
+                <button className="form__submit-button" onSubmit={onSaveUserClicked}>Create New Account</button>
+                <footer><Link to="/">Back to Home </Link><Link to="/login"> Login</Link></footer>
 
             </form>
         </>
