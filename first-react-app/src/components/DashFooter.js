@@ -9,6 +9,8 @@ const DashFooter = () => {
 
     const onGoHomeClicked = () => navigate('/dash')
 
+    const currUser = JSON.parse(localStorage.getItem("email"))
+
     let goHomeButton = null
     if (pathname !== '/dash') {
         goHomeButton = (
@@ -25,7 +27,7 @@ const DashFooter = () => {
     const content = (
         <footer className="dash-footer">
             {goHomeButton}
-            <p>Current User:</p>
+            <p>Current User: {currUser}</p>
             {/* <p>Status:</p> */}
         </footer>
     )
