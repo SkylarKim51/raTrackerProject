@@ -22,7 +22,10 @@ const DashHeader = () => {
     }] = useSendLogoutMutation()
 
     useEffect(() => {
-        if (isSuccess) navigate('/')
+        if (isSuccess){ 
+            navigate('/')
+            localStorage.clear()
+        }
     }, [isSuccess, navigate])
 
     if (isLoading) return <p>Logging Out...</p>

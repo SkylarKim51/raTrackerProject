@@ -11,6 +11,7 @@ import NewUserForm from './features/users/NewUserForm'
 // import EditNote from './features/notes/EditNote'
 // import NewNote from './features/notes/NewNote'
 import Prefetch from './features/auth/Prefetch'
+import NewEntryForm from './features/entry/NewEntryForm'
 
 function App() {
   return (
@@ -31,11 +32,11 @@ function App() {
 
             <Route index element={<Welcome />} />
 
-            {/* <Route path="notes">
-              <Route index element={<NotesList />} />
-              <Route path=":id" element={<EditNote />} />
-              <Route path="new" element={<NewNote />} />
-            </Route> */}
+            <Route path="entry">
+              {/* <Route index element={<EntryList />} /> */}
+              {/* <Route path=":id" element={<EditNote />} /> */}
+              <Route path="new" element={<NewEntryForm />} />
+            </Route>
 
           </Route>{/* End Dash */}
         </Route>
